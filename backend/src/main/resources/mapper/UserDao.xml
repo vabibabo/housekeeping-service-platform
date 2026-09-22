@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserDao">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.model.User">
+        <!--@Table user-->
+        <result property="id" column="Id" jdbcType="INTEGER"/>
+        <result property="authorityId" column="authorityId" jdbcType="INTEGER"/>
+        <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+        <result property="account" column="account" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+        authorityId,
+        nickname,account
+        from user
+        where id = #{id}
+    </select>
+
+    <select id="queryByAccount" resultMap="BaseResultMap">
+        select
+        id
+        from user
+        where account = #{account}
+    </select>
+
+<!--    查询所有员工 authorityId=2-->
+    <select id="queryPlea" resultMap="BaseResultMap">
+        select
+        id
+        from user
+        where authorityId=2
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllUser" resultMap="BaseResultMap">
+        select
+        *
+        from user
+    </select>
+
+    <select id="loginUser" resultType="com.example.demo.model.User">
+        select id ,authorityId, nickname ,account from user
+        <where>
+            <if test="account != null and account != ''">
+                and account = #{account}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <!--新增列-->
+    <insert id="registerUser" keyProperty="id" useGeneratedKeys="true">
+        insert into user(nickname,account, password)
+        values (#{name}, #{account}, #{password})
+    </insert>
+
+
+<!--    更新用户信息-->
+    <update id="upToManage">
+        update user
+        <set>
+            authorityId = #{authorityId},
+        </set>
+        where id = #{userId}
+    </update>
+
+    <delete id="delete">
+        delete from user where Id = #{id}
+    </delete>
+</mapper>
+
