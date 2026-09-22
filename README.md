@@ -36,4 +36,4 @@ The historical frontend targets `http://localhost:8080`; its dev server uses por
 Embedded database credentials were replaced by environment variables. Local logs, generated builds, dependency folders, private reports and editor settings were excluded. Maven wrapper scripts and binary were excluded; use your own Maven installation. Original source attribution and third-party notices are preserved where supplied. This is a coursework archive for review, not an internet-ready service.
 
 ## 中文简介
-家政服务课业，采用 Spring Boot / MyBatis 后端及 Vue / Quasar 前端，包含用户、资料和订单相关模块。唐澜洁（Donna）负责前端部分，Java 后端作为项目上下文保留。当前缺少原始数据库建表文件，尚未完成全流程运行验证。
+采用 Spring Boot / MyBatis 后端及 Vue / Quasar 前端，包含用户、资料和订单相关模块。负责前端部分，Java 后端作为项目上下文保留。当前缺少原始数据库建表文件，尚未完成全流程运行验证。
